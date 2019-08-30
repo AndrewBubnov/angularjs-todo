@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ToDo">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular project</title>
+    <link rel="stylesheet" href="style/style.css">
+    <script src="lib/angular.js"></script>
+    <script>
+        const app = angular.module("ToDo", [])
+        app.controller('ToDoController', ($scope) => {
+            $scope.items = [{id: 0, text: 'one', edited: false}, {id: 1, text: 'two', edited: false}, {
+                id: 2,
+                text: 'three',
+                edited: false
+            }];
+            const items = $scope.items
+
+            $scope.addItem = (text) => {
+                items.push({id: items.length, text})
+                $scope.text = ''
+            }
+
+            $scope.deleteItem = (id) => {
+                $scope.items.splice(items.indexOf(items.filter(element => element.id === id)[0]), 1)
+            }
+
+            $scope.editItem = (id) => {
+                items.filter(element => element.id === id)[0].edited = true
+            }
+
+            $scope.saveItem = (id) => {
+                const item = items.filter(element => element.id === id)[0].edited = false
+            }
+        })
+    </script>
+</head>
+<body ng-controller="ToDoController">
+<input type="text" ng-model="text"/>
+<button ng-click="addItem(text)" class="btn">Add</button>
+<div ng-repeat="item in items" class="todo-container">
+    <input ng-if="item.edited" ng-model="item.text" class="todo-edit-input">
+    <div ng-if="!item.edited" class="todo">
+        {{item.text}}
+    </div>
+    <div class="buttons">
+        <button ng-click="deleteItem(item.id)" class="btn">Delete</button>
+        <div>
+            <button ng-if="!item.edited" ng-click="editItem(item.id)" class="btn">Edit</button>
+            <button ng-if="item.edited" ng-click="saveItem(item.id)" class="btn">Save</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

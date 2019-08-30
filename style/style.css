@@ -1,0 +1,24 @@
+.buttons{
+    display: flex;
+}
+.todo-container{
+    display: flex;
+}
+.todo{
+    width: 200px;
+    margin-right: 50px;
+}
+.todo-edit-input{
+    width: 200px;
+    margin-right: 50px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+}
+.todo-edit-input:focus{
+    outline: none;
+}
+.btn{
+    width: 70px;
+    margin-right: 20px;
+}
